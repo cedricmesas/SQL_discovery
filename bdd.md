@@ -8,22 +8,46 @@
 | 2 | name_02 |
 | 3 | name_03 |
 
+```sql
+CREATE TABLE 'users' (
+    'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+    'name' NVARCHAR(60) NOT NULL
+);
+```
 
-**ARTICLE database**
+**ARTICLES database**
 
-| id_article | body | id_user
+| id_articles | body | id_users
 | :-: | :-: | :-: |
 | 1 | body_01 | 1 |
 | 2 | body_02 | 3 |
 | 3 | body_03 | 2 |
 
+```sql
+CREATE TABLE 'articles' (
+    'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+    'body' NVARCHAR(15000) NOT NULL,
+    'id_users' INTEGER NOT NULL,
+    FOREIGN KEY (id_users) REFERENCES ('id')
+);
+```
+
 **CATEGORY database**
 
-| id_category | title | id_article
+| id_category | title | id_articles
 | :-: | :-: | :-: |
 | 1 | ton_title_01 | 1 |
 | 2 | ton_title_02 | 3 |
 | 3 | ton_title_03 | 2 |
+
+```sql
+CREATE TABLE 'category' (
+    'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+    'title' NVARCHAR(240)) NOT NULL,
+    'id_articles' INTEGER NOT NULL,
+    FOREIGN KEY (id_articles) REFERENCES ('id')
+);
+```
 
 **TAG database**
 
@@ -32,6 +56,15 @@
 | 1 | title_01 | color_01 | id_category_01 |
 | 2 | title_02 | color_02 | id_category_02 |
 | 3 | title_03 | color_03 | id_category_03 |
+
+```sql
+CREATE TABLE 'tag' (
+    'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+    'title' NVARCHAR(240)) NOT NULL,
+    'id_category' INTEGER NOT NULL,
+    FOREIGN KEY (id_category) REFERENCES ('id')
+);
+```
 
 # MOOCAcademy
 
@@ -43,7 +76,7 @@
 | 2 | Robert | Hutte | 67
 | 3 | Manu | Micro | 50
 
-```ruby 
+```sql 
 CREATE TABLE 'users' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     'first_name' NVARCHAR(60), 
@@ -56,11 +89,11 @@ CREATE TABLE 'users' (
 
 | id | title| description |
 | :-: | :-: | :-: |
-| 1 | ton_cours_1 | le_title_1 |
-| 2 | ton_cours_1 | le_title_2 |
-| 3 | ton_cours_3 | le_title_3 |
+| 1 | le_title_1 | description_01 |
+| 2 | le_title_2 | description_02 |
+| 3 | le_title_3 | description_03 |
 
-```ruby 
+```sql 
 CREATE TABLE 'cours' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     'title' NVARCHAR(180) NOT NULL, 
@@ -72,17 +105,17 @@ CREATE TABLE 'cours' (
 
 | id | title| body | id_cours |
 | :-: | :-: | :-: | :-: |
-| 1 | Title_01 | body_01 | id_cours01 |
-| 2 | Title_02 | body_02 | id_cours02 |
-| 3 | Title_03 | body_03 | id_cours03 |
+| 1 | le_title_01 | body_01 | id_cours01 |
+| 2 | le_title_02 | body_02 | id_cours02 |
+| 3 | le_title_03 | body_03 | id_cours03 |
 
-```ruby
+```sql
 CREATE TABLE 'lessons' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'title' NVARCHAR(120) NOT NULL, 
     'body' TEXT,
     id_cours INTEGER NOT NULL,
-    FOREIGN KEY (id_cours) REFERENCES cours(id)
+    FOREIGN KEY (id_cours) REFERENCES cours('id')
 );
 ```
 
@@ -97,7 +130,7 @@ CREATE TABLE 'lessons' (
 | 3 | Manu | Micro | 50
 
 
-```ruby
+```sql
 CREATE TABLE 'users' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'first_name' NVARCHAR(60) NOT NULL, 
@@ -115,7 +148,7 @@ CREATE TABLE 'users' (
 | 3 | www.ton_url_pins3 | title_pins3 | description_pins3 | id_users_03
 
 
-```ruby
+```sql
 CREATE TABLE 'pins' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'url_pictures' TEXT NOT NULL, 
@@ -134,7 +167,7 @@ CREATE TABLE 'pins' (
 | 2 | ton_comments_2 | id_pins_02 | id_users_02
 | 3 | ton_comments_3 | id_pins_03 | id_users_03
 
-```ruby
+```sql
 CREATE TABLE 'comments' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'comments' TEXT,
@@ -155,7 +188,7 @@ CREATE TABLE 'comments' (
 | 2 | first_name_02 | last_name_02 |
 | 3 | first_name_03 | last_name_03 |
 
-```ruby
+```sql
 CREATE TABLE 'users' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'first_name' NVARCHAR(60),
@@ -171,7 +204,7 @@ CREATE TABLE 'users' (
 | 2 | ton_comments_2 | id_users_02 | id_links_02 | id_comments_02 |
 | 3 | ton_comments_3 | id_users_03 | id_links_03 | id_comments_03 |
 
-```ruby
+```sql
 CREATE TABLE 'comments' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'comments' TEXT,
@@ -192,7 +225,7 @@ CREATE TABLE 'comments' (
 | 2 | links_url_02 | links_text_02 | id_users_02 |
 | 3 | links_url_03 | links_text_03 | id_users_03 |
 
-```ruby
+```sql
 CREATE TABLE 'links' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'links_url' TEXT,
@@ -213,7 +246,7 @@ CREATE TABLE 'links' (
 | 2 | name_02 | email@name2 | id_courses_02 |
 | 3 | name_03 | email@name3 | id_courses_03 |
 
-```ruby
+```sql
 CREATE TABLE 'students' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'name' NVARCHAR(60),
@@ -231,9 +264,44 @@ CREATE TABLE 'students' (
 | id_courses_02 | name_courses_02 |
 | id_courses_03 | name_courses_03 |
 
-```ruby
+```sql
 CREATE TABLE 'courses' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'name_courses' NVARCHAR(240)
 );
+```
+
+
+# BDD MUSICALE
+
+1. Récupérer **tous les albums**
+
+```sql
+SELECT * FROM albums;
+```
+
+2. Récupérer **tous les albums** dont le **titre contient "Great"** 
+
+```sql
+SELECT * FROM albums
+WHERE Title LIKE  'Great%';
+```
+
+3. Donner le **nombre total d'albums** contenus dans la base
+
+```sql
+SELECT COUNT (AlbumId)
+FROM albums;
+```
+
+4. Supprimer **tous les albums dont le nom contient "music"**
+
+```sql
+DELETE FROM albums WHERE Title LIKE '%music%';
+```
+
+5. Récupérer **tous les albums écrits par AC/DC**
+
+```sql
+A finir :)
 ```
