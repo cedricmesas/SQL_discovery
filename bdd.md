@@ -109,7 +109,7 @@ CREATE TABLE 'users' (
 **PINS database**
 
 | id | url_pictures | title | description | id_users |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| :-: | :-: | :-: | :-: | :-: |
 | 1 | www.ton_url_pins1 | title_pins1 | description_pins1 | id_users_01
 | 2 | www.ton_url_pins2 | title_pins2 | description_pins2 | id_users_02
 | 3 | www.ton_url_pins3 | title_pins3 | description_pins3 | id_users_03
