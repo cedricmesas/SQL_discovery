@@ -333,3 +333,13 @@ SELECT SUM(tracks.UnitPrice), SUM(tracks.Milliseconds)
 FROM tracks
 INNER JOIN albums ON tracks.AlbumId=albums.AlbumId AND albums.Title = 'Let There Be Rock'
 ```
+
+9. Afficher **le coût de l'intégralité de la discographie de "Deep Purple"**
+
+```sql
+SELECT SUM(tracks.UnitPrice)
+FROM tracks
+INNER JOIN albums ON tracks.AlbumId = albums.AlbumId 
+INNER JOIN artists ON albums.ArtistId = artists.ArtistId 
+AND artists.Name = 'Deep Purple';
+```
