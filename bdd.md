@@ -297,11 +297,39 @@ FROM albums;
 4. Supprimer **tous les albums dont le nom contient "music"**
 
 ```sql
-DELETE FROM albums WHERE Title LIKE '%music%';
+DELETE FROM albums 
+WHERE Title LIKE '%music%';
 ```
 
 5. Récupérer **tous les albums écrits par AC/DC**
 
 ```sql
-A finir :)
+SELECT * FROM tracks
+WHERE Composer LIKE "AC/DC%";
+```
+
+
+6. Récupérer **tous les titres des albums de AC/DC**
+
+```sql
+SELECT tracks.Name, albums.Title, artists.Name
+FROM albums
+INNER JOIN artists ON albums.ArtistId = artists.ArtistId AND artists.Name = 'AC/DC'
+INNER JOIN tracks ON albums.AlbumId = tracks.AlbumId;
+```
+
+7. Récupérer **la liste des titres de l'album "Let There Be Rock"**
+
+```sql
+SELECT albums.Title,  tracks.Name
+FROM tracks
+INNER JOIN albums ON tracks.AlbumId=albums.AlbumId AND albums.Title = 'Let There Be Rock';
+```
+
+8. Afficher **le prix de cet album** ainsi que **sa durée totale**
+
+```sql
+SELECT SUM(tracks.UnitPrice), SUM(tracks.Milliseconds)
+FROM tracks
+INNER JOIN albums ON tracks.AlbumId=albums.AlbumId AND albums.Title = 'Let There Be Rock'
 ```
