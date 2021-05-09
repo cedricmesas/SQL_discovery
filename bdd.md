@@ -82,6 +82,8 @@ CREATE TABLE 'users' (
     'first_name' NVARCHAR(60), 
     'last_name' NVARCHAR(60),
     'age' INTEGER
+    id_cours INTEGER NOT NULL,
+    FOREIGN KEY (id_cours) REFERENCES cours('id')
 );
 ```
 
@@ -97,7 +99,7 @@ CREATE TABLE 'users' (
 CREATE TABLE 'cours' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     'title' NVARCHAR(180) NOT NULL, 
-    'description' TEXT
+    'description' TEXT(1500)
 );
 ```
 
@@ -113,7 +115,7 @@ CREATE TABLE 'cours' (
 CREATE TABLE 'lessons' (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'title' NVARCHAR(120) NOT NULL, 
-    'body' TEXT,
+    'body' TEXT(500)
     id_cours INTEGER NOT NULL,
     FOREIGN KEY (id_cours) REFERENCES cours('id')
 );
