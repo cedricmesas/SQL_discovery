@@ -274,7 +274,7 @@ CREATE TABLE 'courses' (
 ```
 
 
-# BDD MUSICALE
+# CHINOOK.DB
 
 1. Récupérer **tous les albums**
 
